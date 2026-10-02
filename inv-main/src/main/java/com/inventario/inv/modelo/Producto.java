@@ -25,7 +25,6 @@ public class Producto {
 
     private boolean disponible = true;
 
-    // Nombre del archivo de la portada (paso 17). null = sin portada.
     private String portada;
 
     public Producto() {

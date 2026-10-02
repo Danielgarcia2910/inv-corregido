@@ -41,7 +41,7 @@ public class ProductoRestController {
         return servicio.buscar(id)
                 .map(ProductoDTO::de)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());   // 404, no 200 vacío
+                .orElse(ResponseEntity.notFound().build());   
     }
 
     @PostMapping
@@ -49,7 +49,7 @@ public class ProductoRestController {
         Producto creado = servicio.crear(
                 new Producto(null, entrada.nombre(), entrada.codigo(), entrada.stock()));
         return ResponseEntity
-                .created(URI.create("/api/productos/" + creado.getId()))   // 201 + Location
+                .created(URI.create("/api/productos/" + creado.getId()))  
                 .body(ProductoDTO.de(creado));
     }
 
@@ -70,10 +70,10 @@ public class ProductoRestController {
             return ResponseEntity.notFound().build();
         }
         servicio.borrar(id);
-        return ResponseEntity.noContent().build();            // 204
+        return ResponseEntity.noContent().build();            
     }
 
-    // Una regla de negocio rota (código repetido, nombre vacío...) es un 400, no un 500.
+    
     @ExceptionHandler(ReglaNegocioException.class)
     public ResponseEntity<String> reglaNegocio(ReglaNegocioException e) {
         return ResponseEntity.badRequest().body(e.getMessage());

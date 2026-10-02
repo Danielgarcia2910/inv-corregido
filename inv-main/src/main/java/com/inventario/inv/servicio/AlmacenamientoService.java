@@ -22,7 +22,6 @@ public class AlmacenamientoService {
         Files.createDirectories(this.carpeta);
     }
 
-    /** Lanza ReglaNegocioException si hay archivo y no es una imagen admitida. */
     public void comprobar(MultipartFile archivo) {
         if (archivo == null || archivo.isEmpty()) {
             return;
@@ -33,14 +32,12 @@ public class AlmacenamientoService {
         }
     }
 
-    /** Guarda la portada y devuelve el nombre del archivo (null si no se subió ninguna). */
     public String guardarPortada(Long idProducto, MultipartFile archivo) {
         if (archivo == null || archivo.isEmpty()) {
             return null;
         }
         comprobar(archivo);
 
-        // El nombre lo pone el servidor, NUNCA el navegador.
         String nombre = "producto-" + idProducto + extension(archivo.getContentType());
         Path destino = carpeta.resolve(nombre);
 

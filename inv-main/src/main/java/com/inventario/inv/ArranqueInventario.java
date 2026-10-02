@@ -8,7 +8,7 @@ public class ArranqueInventario implements CommandLineRunner {
     
     @Override
     public void run(String... args)  {
-        System.out.println("===INVENTARIO LISTO ===");
+        System.out.println("===INVENTARIO FUNCIONARA===");
     }
     
 }

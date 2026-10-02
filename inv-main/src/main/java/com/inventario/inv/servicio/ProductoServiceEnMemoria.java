@@ -75,7 +75,6 @@ public class ProductoServiceEnMemoria implements ProductoService {
         }
     }
 
-    // ── reglas de negocio ────────────────────────────────────────────────
     private void validar(Producto producto) {
         if (producto.getNombre() == null || producto.getNombre().isBlank()) {
             throw new ReglaNegocioException("El nombre es obligatorio");

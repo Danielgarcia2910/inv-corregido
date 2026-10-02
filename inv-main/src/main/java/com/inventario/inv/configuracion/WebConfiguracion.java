@@ -20,7 +20,7 @@ public class WebConfiguracion implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registro) {
         String ruta = Path.of(carpeta).toAbsolutePath().normalize().toUri().toString();
         if (!ruta.endsWith("/")) {
-            ruta += "/";   // si la carpeta aún no existe, toUri() no pone la barra
+            ruta += "/";  
         }
         registro.addResourceHandler("/portadas/**").addResourceLocations(ruta);
     }

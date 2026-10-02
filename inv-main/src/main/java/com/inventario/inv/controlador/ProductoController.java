@@ -32,7 +32,6 @@ public class ProductoController {
         this.almacen = almacen;
     }
 
-    // ── paso 12: catálogo y ficha ────────────────────────────────────────
     @GetMapping
     public String catalogo(@RequestParam(defaultValue = "") String buscar, Model modelo) {
         modelo.addAttribute("productos", servicio.buscarPorNombre(buscar));
@@ -48,7 +47,6 @@ public class ProductoController {
         return "productos/ficha";
     }
 
-    // ── paso 16: alta y edición · paso 17: portada solo al crear ─────────
     @GetMapping("/nueva")
     public String formularioNuevo(Model modelo) {
         modelo.addAttribute("producto", new Producto());
@@ -57,15 +55,15 @@ public class ProductoController {
 
     @PostMapping
     public String crear(@Valid @ModelAttribute("producto") Producto producto,
-                        BindingResult errores,          // ← pegado al objeto validado
+                        BindingResult errores,          
                         @RequestParam(required = false) MultipartFile archivoPortada,
                         RedirectAttributes flash) {
 
         if (errores.hasErrors()) {
-            return "productos/formulario";              // vuelve con lo escrito
+            return "productos/formulario";              
         }
         try {
-            almacen.comprobar(archivoPortada);          // antes de crear: no dejar un producto a medias
+            almacen.comprobar(archivoPortada);        
         } catch (ReglaNegocioException e) {
             errores.rejectValue("portada", "tipo", e.getMessage());
             return "productos/formulario";
@@ -81,7 +79,7 @@ public class ProductoController {
             return "productos/formulario";
         }
         flash.addFlashAttribute("aviso", "Producto añadido");
-        return "redirect:/productos";                   // PRG: nunca "productos/lista"
+        return "redirect:/productos";                  
     }
 
     @GetMapping("/{id}/editar")
@@ -98,8 +96,7 @@ public class ProductoController {
                          BindingResult errores,
                          RedirectAttributes flash) {
 
-        // El formulario no envía el id; si se pierde, al volver con errores
-        // la plantilla creería que es un alta y apuntaría a POST /productos.
+        
         producto.setId(id);
 
         if (errores.hasErrors()) {
@@ -115,7 +112,6 @@ public class ProductoController {
         return "redirect:/productos/" + id;
     }
 
-    // Un producto que no existe vuelve al catálogo con aviso, no a una página de error.
     @ExceptionHandler(ReglaNegocioException.class)
     public String reglaNegocio(ReglaNegocioException e, RedirectAttributes flash) {
         flash.addFlashAttribute("error", e.getMessage());
