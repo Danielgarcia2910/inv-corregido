@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/comunes :: cabeza('Producto')}"></head>
+<body>
+<header th:replace="~{fragmentos/comunes :: cabecera}"></header>
+<nav    th:replace="~{fragmentos/comunes :: menu('productos')}"></nav>
+
+<main>
+    <h2 th:text="${producto.id} == null ? 'Nuevo producto' : 'Editar producto'">Nuevo producto</h2>
+
+    <p class="error" th:if="${error}" th:text="${error}"></p>
+
+    <form method="post" enctype="multipart/form-data" class="formulario" th:object="${producto}"
+          th:action="${producto.id} == null
+                     ? @{/productos}
+                     : @{/productos/{id}(id=${producto.id})}">
+
+        <label>Nombre
+            <input type="text" th:field="*{nombre}">
+        </label>
+        <p class="error" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></p>
+
+        <label>Código
+            <input type="text" th:field="*{codigo}">
+        </label>
+        <p class="error" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></p>
+
+        <label>Stock
+            <input type="number" th:field="*{stock}">
+        </label>
+        <p class="error" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></p>
+
+        <label>Portada
+            <input type="file" name="archivoPortada" accept="image/*">
+        </label>
+        <p class="error" th:if="${#fields.hasErrors('portada')}" th:errors="*{portada}"></p>
+
+        <div>
+            <button type="submit">Guardar</button>
+            <a th:href="@{/productos}">Cancelar</a>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="~{fragmentos/comunes :: pie}"></footer>
+</body>
+</html>

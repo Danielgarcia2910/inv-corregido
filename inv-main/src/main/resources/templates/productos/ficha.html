@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/comunes :: cabeza(${producto.nombre})}"></head>
+<body>
+    <header th:replace="~{fragmentos/comunes :: cabecera}"></header>
+    <nav    th:replace="~{fragmentos/comunes :: menu('productos')}"></nav>
+
+    <main>
+        <p class="aviso" th:if="${aviso}" th:text="${aviso}"></p>
+
+        <h2 th:text="${producto.nombre}">Nombre</h2>
+
+        <img class="portada" alt="Portada"
+             th:src="${producto.portada} != null
+                     ? @{/portadas/{n}(n=${producto.portada})}
+                     : @{/img/sin-portada.png}">
+
+        <dl>
+            <dt>Código</dt> <dd th:text="${producto.codigo}">LAP-001</dd>
+            <dt>Stock</dt>  <dd th:text="${producto.stock}">10</dd>
+            <dt>Estado</dt>
+            <dd th:text="${producto.disponible} ? 'Disponible' : 'Agotado'">Disponible</dd>
+        </dl>
+
+        <a th:href="@{/productos}">← Volver al catálogo</a>
+        <a th:href="@{/productos/{id}/editar(id=${producto.id})}">Editar</a>
+    </main>
+
+    <footer th:replace="~{fragmentos/comunes :: pie}"></footer>
+</body>
+</html>

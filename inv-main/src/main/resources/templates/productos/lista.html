@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragmentos/comunes :: cabeza('Catálogo')}"></head>
+<body>
+    <header th:replace="~{fragmentos/comunes :: cabecera}"></header>
+    <nav    th:replace="~{fragmentos/comunes :: menu('productos')}"></nav>
+
+    <main>
+        <h2>Catálogo</h2>
+
+        <p class="aviso" th:if="${aviso}" th:text="${aviso}"></p>
+        <p class="error" th:if="${error}" th:text="${error}"></p>
+
+        <form method="get" th:action="@{/productos}" class="busqueda">
+            <input type="text" name="buscar" th:value="${buscar}" placeholder="Nombre del producto…">
+            <button type="submit">Buscar</button>
+            <a th:href="@{/productos/nueva}">Añadir producto</a>
+        </form>
+
+        <p th:if="${#lists.isEmpty(productos)}" class="vacio">
+            No hay productos que coincidan con la búsqueda.
+        </p>
+
+        <table th:unless="${#lists.isEmpty(productos)}">
+            <thead>
+                <tr><th>#</th><th>Portada</th><th>Nombre</th><th>Código</th><th>Stock</th><th>Estado</th></tr>
+            </thead>
+            <tbody>
+                <tr th:each="producto, iter : ${productos}"
+                    th:classappend="${producto.disponible} ? 'libre' : 'agotado'">
+                    <td th:text="${iter.count}">1</td>
+                    <td>
+                        <img class="mini" alt="Portada"
+                             th:src="${producto.portada} != null
+                                     ? @{/portadas/{n}(n=${producto.portada})}
+                                     : @{/img/sin-portada.png}">
+                    </td>
+                    <td>
+                        <a th:href="@{/productos/{id}(id=${producto.id})}"
+                           th:text="${producto.nombre}">Nombre</a>
+                    </td>
+                    <td th:text="${producto.codigo}">LAP-001</td>
+                    <td th:text="${producto.stock}">10</td>
+                    <td th:text="${producto.disponible} ? 'Disponible' : 'Agotado'">Disponible</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <footer th:replace="~{fragmentos/comunes :: pie}"></footer>
+</body>
+</html>

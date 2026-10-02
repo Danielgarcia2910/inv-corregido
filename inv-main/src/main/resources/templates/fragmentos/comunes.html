@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="cabeza(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="${titulo} + ' · Inventario'">Inventario</title>
+    <link rel="stylesheet" th:href="@{/css/stilos.css}">
+</head>
+<body>
+
+<header th:fragment="cabecera">
+    <h1><a th:href="@{/}">Inventario</a></h1>
+</header>
+
+<nav th:fragment="menu(activo)">
+    <a th:href="@{/productos}" th:classappend="${activo == 'productos'} ? 'activo'">Productos</a>
+</nav>
+
+<footer th:fragment="pie">
+    <p>Inventario · control de productos</p>
+</footer>
+
+</body>
+</html>

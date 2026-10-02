@@ -1,0 +1,198 @@
+body{
+    font-family: system-ui, sans-serif;
+    margin: 2rem auto;
+    max-width: rem;
+    padding: 0 1.5rem;
+    line-height: 1.6;
+}
+
+h1, h2{
+    margin: 0 0 1rem;
+}
+
+main{
+    padding: 1rem 0 2rem;
+}
+
+main > * + *{
+    margin-top: 1.25rem;
+}
+
+a{
+    color: rgb(172, 7, 21);
+}
+
+button{
+    padding: .5rem 1.2rem;
+    cursor: pointer;
+}
+
+/* ── Cabecera, menú y pie ─────────────────────────────────── */
+header{
+    padding-bottom: .5rem;
+}
+
+header h1 a{
+    color: black;
+    text-decoration: none;
+}
+
+nav{
+    display: flex;
+    gap: 1.5rem;
+    margin: 0 0 1.5rem;
+    padding: .25rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+nav a{
+    padding: .6rem .2rem;
+    text-decoration: none;
+    color: #444;
+}
+
+nav a.activo{
+    color: #0a6;
+    border-bottom: 2px solid #0a6;
+    font-weight: 600;
+}
+
+footer{
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid #ddd;
+    color: #777;
+    font-size: .9rem;
+}
+
+/* ── Buscador ─────────────────────────────────────────────── */
+form.busqueda{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    margin: 1rem 0 1.5rem;
+}
+
+form.busqueda input[type=text]{
+    padding: .5rem .7rem;
+    min-width: 16rem;
+}
+
+/* ── Tabla ────────────────────────────────────────────────── */
+table{
+    border-collapse: collapse;
+    width: 90%;
+    margin-top: 1.9rem;
+}
+
+th, td{
+    border-bottom: 1px solid #ddd;
+    padding: .9rem 1.1rem;
+    text-align: left;
+    vertical-align: middle;
+}
+
+th{
+    background: #f4f4f4;
+}
+
+tr.agotado{
+    opacity: .55;
+}
+
+tr.agotado td:last-child{
+    color: #b23;
+    font-weight: 600;
+}
+
+.vacio{
+    color: #777;
+    font-style: italic;
+    margin: 1.5rem 0;
+}
+
+/* ── Mensajes ─────────────────────────────────────────────── */
+.aviso{
+    background: #e6f7ee;
+    color: rgb(167, 7, 7);
+    padding: .8rem 1.2rem;
+    border-radius: 4px;
+    margin: 1rem 0;
+}
+
+p.error{
+    color: #b23;
+    margin: .4rem 0 0;
+}
+
+/* ── Imágenes ─────────────────────────────────────────────── */
+.mini{
+    width: 40px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 3px;
+    display: block;
+}
+
+.portada{
+    max-width: 200px;
+    max-height: 280px;
+    border-radius: 4px;
+    display: block;
+    margin: 1rem 0 1.5rem;
+}
+
+/* ── Ficha ────────────────────────────────────────────────── */
+dl{
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: .6rem 2rem;
+    margin: 1.5rem 0;
+}
+
+dt{
+    font-weight: 600;
+}
+
+dd{
+    margin: 0;
+}
+
+main > a{
+    display: inline-block;
+    margin: 1rem 1.5rem 0 0;
+}
+
+/* ── Formulario ───────────────────────────────────────────── */
+form.formulario{
+    max-width: 28rem;
+}
+
+form.formulario label{
+    display: block;
+    margin-top: 1.4rem;
+    font-weight: 600;
+}
+
+form.formulario input[type=text],
+form.formulario input[type=number]{
+    display: block;
+    padding: .5rem .7rem;
+    width: 100%;
+    margin-top: .4rem;
+    box-sizing: border-box;
+}
+
+form.formulario input[type=file]{
+    display: block;
+    margin-top: .4rem;
+    font-weight: 400;
+}
+
+form.formulario div{
+    margin-top: 2rem;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
